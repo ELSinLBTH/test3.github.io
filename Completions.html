@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"> 
+<script type = "text/javascript" src="statsjs.js"></script> 
+<title>Completions</title>
+
+<script src="echarts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.1-rc.1/echarts.min.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+</head>
+ 
+<style>
+
+.chart1{  
+      padding-top: 0px;
+      padding-right: 300px;
+      padding-left: 300px; 
+      width: 800px;
+      height: 600px;
+      font-family: 'Lato' !important;  
+      } 
+ </style>
+
+<p style="font-size: 24px; text-align: center; font-family: 'Lato' ">Completions 23-24</p> 
+<div id="main" class="chart1">
+         
+<script> 
+        
+var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
+
+option = {
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    top: '5%',
+    left: 'center'
+  },
+  series: [
+    {
+      name: 'Completions 23-24',
+      type: 'pie',
+      radius: ['40%', '70%'],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: 40,
+          fontWeight: 'bold'
+        }
+      },
+      labelLine: {
+        show: false
+      },
+      data: [
+        { value: 654, name: 'Market' },
+        { value: 129, name: 'Social Rent' },
+        { value: 198, name: 'Affordable Rent' },
+        { value: 103, name: 'Intermediate Rent' },
+        { value: 13, name: 'TH Living Rent' } 
+      ]
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+
+
+</script>
+
+</div>
+  
+
+</html>

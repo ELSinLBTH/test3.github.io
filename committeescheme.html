@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Committee Schemes</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+<style>
+body { margin: 0; padding: 0; font-family: 'Lato' !important;  }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    #map {
+        position: fixed;
+        width: 60%;
+    }
+    #features {
+        width: 40%;
+        margin-left: 60%;
+        font-family: sans-serif;
+        overflow-y: scroll;
+        background-color: #fafafa;
+    }
+    section {
+        padding: 25px 50px;
+        line-height: 25px;
+        border-bottom: 1px solid #ddd;
+        opacity: 0.25;
+        font-size: 13px;
+    }
+    section.active {
+        opacity: 1;
+    }
+    section:last-child { 
+        margin-bottom: 450px;
+    }
+</style>
+
+<div id="map"></div>
+<div id="features">
+    <section id="intro" class="active">
+        <h1>Committe Schemes</h1>
+        <p>
+            An overview of schemes that have gone to committee.
+        </p>
+    </section>
+    <section id="LD"> 
+        <h3>London Dock</h3>
+        <p>
+            Date: 3rd April, 2024 
+        </p>
+        <p> 
+            (PA/23/02079) Former News International Site, Buildings H & J, London Dock, 1 Virginia Street, London E98 1XY
+        </p>
+        <p>
+            Grant planning permission for the redevelopment of the site comprising the erection of two buildings comprising 
+            residential use (Use Class C3), flexible commercial  (Use Class E) and ancillary residential floorspace (Use Class C3), 
+            basement, disabled persons’ car parking, cycle parking, new public realm, landscaping and play space, plant, 
+            refuse and associated works
+        </p>
+        <p>
+            The proposal would provide 227 affordable homes, 61 additional affordable homes than previously envisaged and 36 of 
+            them affordable rented. This is equal to 43% of affordable housing, which is below the 35% policy requirement.
+        </p>
+        <p> 
+            Watch <a href="https://towerhamlets.public-i.tv/core/portal/webcast_interactive/852989/start_time/2068000">webcast</a> here 
+        </p>
+        <p>
+            Read <a href="https://democracy.towerhamlets.gov.uk/documents/s232398/London%20Dock%20H%20and%20J.pdf">minutes</a> here 
+        </p>
+    </section>
+    <section id="OW">
+        <h3>Orchard Wharf</h3>
+        <p>
+            Date: 3rd April, 2024 
+        </p>
+        <p>
+            (PF/23/00120) Orchard Wharf, Orchard Place, London, E14 0JY
+        </p>
+        <p>
+            Pre-application advice is being sought for the comprehensive redevelopment of the site
+            consisting of the delivery of a logistics centre (8,500sqm GIA) associated with the safeguarded
+            wharf to operate as a ‘last mile’ logistics and the inclusion of Purpose Built Student
+            Accommodation (PBSA) (Sui Generis) (1,365 rooms) and traditional Use Class C3 housing
+            (208 units) to be delivered as affordable housing.
+        </p>
+        <p>
+            The proposal would provide 227 affordable homes, 61 additional affordable homes than previously envisaged and 36 of 
+            them affordable rented. This is equal to 43% of affordable housing, which is below the 35% policy requirement.
+        </p>
+        <p> 
+            Watch <a href="https://towerhamlets.public-i.tv/core/portal/webcast_interactive/852989/start_time/4085000">webcast</a> here 
+        </p>
+        <p>
+            Read <a href="https://democracy.towerhamlets.gov.uk/documents/s232354/SDC%20Pre-App%20Report%20-%20Orchard%20Wharf%20Final.pdf">minutes</a> here 
+        </p>
+    </section>
+    <section id="CR">
+        <h3>82 Columbia Road, London, E2 7QB</h3>
+        <p>
+            Date: 25th April, 2024 
+        </p>
+        <p>
+            PA/23/02171: 82 Columbia Road, London, E2 7QB
+        </p>
+        <p>
+            The application proposes a modification to the existing single-storey rear extension at ground
+            floor which would serve the first-floor residential unit as a kitchen and outdoor courtyard space.
+            The proposal would create a larger residential unit (C3) but an overall reduction in the total
+            built form of the building and a reduction in the provision of ground floor retail space (Class
+            E). A revised internal layout for the ground floor shop unit is proposed which maintains access
+            to the basement for storage and the reprovision of a WC and kitchenette.
+        </p>
+        <p>
+            The proposal would provide 227 affordable homes, 61 additional affordable homes than previously envisaged and 36 of 
+            them affordable rented. This is equal to 43% of affordable housing, which is below the 35% policy requirement.
+        </p>
+        <p>
+           Watch <a href="https://towerhamlets.public-i.tv/core/portal/webcast_interactive/773972/start_time/602000">webcast</a> here
+        </p>
+        <p>
+            Read <a href="https://democracy.towerhamlets.gov.uk/documents/s233991/82%20Columbia%20Road%20-%20Development%20comittee%20report%20final.pdf">minutes</a> here 
+        </p>
+    </section>   
+</div>
+
+<script>
+	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZWxpa2E0NjVwYmMiLCJhIjoiY2x3YWtrMWIwMGhpOTJrbGQ0OTNjdzl1NyJ9.EUVxOKr6j9g7iyTHSW6tVw';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/elika465pbc/clwf1fnue00ep01pnaovg5q3y',
+        center: [-0.031228, 51.516350],
+        zoom: 12.5,
+        bearing: 0,
+        pitch: 0
+    });
+
+    // setting navigation control
+    map.addControl(new mapboxgl.NavigationControl());
+
+    const chapters = {
+        'intro': {
+            bearing: 0,
+            center: [-0.031228, 51.516350],
+            zoom: 12.5,
+            pitch: 0
+        },
+        'LD': {
+            bearing: 65,
+            center: [-0.0654144, 51.5082140],
+            zoom: 16.5,
+            pitch: 50
+        },
+        'OW': {
+            bearing: 40,
+            center: [-0.001027, 51.511806],
+            zoom: 16.5,
+            pitch: 50
+        },
+        'CR': {
+            bearing: 65,
+            center: [-0.070760, 51.528419],
+            zoom: 16.5,
+            pitch: 50
+        },
+    };
+
+    // fly through element
+    
+    let activeChapterName = 'intro';
+    function setActiveChapter(chapterName) {
+        if (chapterName === activeChapterName) return;
+
+        map.flyTo(chapters[chapterName]);
+
+        document.getElementById(chapterName).classList.add('active');
+        document.getElementById(activeChapterName).classList.remove('active');
+
+        activeChapterName = chapterName;
+    }
+
+    function isElementOnScreen(id) {
+        const element = document.getElementById(id);
+        const bounds = element.getBoundingClientRect();
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
+    }
+
+    // On every scroll event, check which element is on screen
+
+    window.onscroll = () => {
+        for (const chapterName in chapters) {
+            if (isElementOnScreen(chapterName)) {
+                setActiveChapter(chapterName);
+                break;
+            }
+        }
+    };
+
+    // Create a default Marker and add it to the map.
+    const marker1 = new mapboxgl.Marker({ color: 'grey'})
+        .setLngLat([-0.0654144, 51.5082140])
+        .addTo(map);
+
+    // Create a default Marker, colored black, rotated 45 degrees.
+    const marker2 = new mapboxgl.Marker({ color: 'grey'})
+        .setLngLat([-0.070760, 51.528419])
+        .addTo(map);
+
+     // Create a default Marker, colored black, rotated 45 degrees.
+     const marker3 = new mapboxgl.Marker({ color: 'grey'})
+        .setLngLat([0.001049, 51.511820])
+        .addTo(map);
+
+</script>
+
+</body>
+</html>
